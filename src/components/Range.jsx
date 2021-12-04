@@ -14,9 +14,11 @@ const Range = ({ name, value, setValue }) => {
         <InputGroup className="mb-3 range-text-wrapper">
           <Form.Control
             className="range-text"
-            type="text"
+            type="number"
             value={value}
             onChange={onChange}
+            max={100}
+            min={0}
           />
           <InputGroup.Text id="basic-addon1">px</InputGroup.Text>
         </InputGroup>

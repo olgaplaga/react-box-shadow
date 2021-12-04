@@ -16,5 +16,16 @@
     width: auto;
     margin-left: 1rem !important;
     margin-bottom: 0 !important;
+    
 }
 
+.form-control.range-text::-webkit-outer-spin-button,
+.form-control.range-text::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.form-control.range-text[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
