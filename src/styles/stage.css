@@ -1,0 +1,10 @@
+.inner {
+    min-width: 200px;
+    min-height: 200px;
+    background-color: #d2d2d2;
+    
+}
+
+.outer {
+    padding: 60px;
+}
