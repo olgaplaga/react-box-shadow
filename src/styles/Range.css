@@ -1,0 +1,9 @@
+.form-range.range {
+    flex-grow: 2;
+    width: auto;
+}
+
+.input-group > .form-control.range-text {
+    width: 55px;
+    flex: 0 0 auto;
+}

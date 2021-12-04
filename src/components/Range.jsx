@@ -1,4 +1,5 @@
-import { Form } from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
+import '../styles/Range.css';
 
 const Range = ({ name, value, setValue }) => {
   const label = name[0].toUpperCase() + name.substring(1, name.length);
@@ -6,11 +7,20 @@ const Range = ({ name, value, setValue }) => {
 
   return (
     <>
-    
-      <Form.Label>{label}</Form.Label>
-      <Form.Range value={value} onChange={onChange} />
-      
+    <Form.Label>{label}</Form.Label>
+      <InputGroup className="mb-3">
+      <Form.Range className="range" value={value} onChange={onChange} />
+
+          <Form.Control className="range-text" type="text" value={value} onChange={onChange}/>
+      </InputGroup>
+      {/* <Form.Text className="text-muted">{invalid}</Form.Text> */}
     </>
+
+
+      // <Form.Label>{label}</Form.Label>
+      // <Form.Range value={value} onChange={onChange} />
+      
+    // </>
   );
 };
 
