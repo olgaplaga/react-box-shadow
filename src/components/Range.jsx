@@ -7,19 +7,26 @@ const Range = ({ name, value, setValue }) => {
 
   return (
     <>
-    <Form.Label>{label}</Form.Label>
-      <InputGroup className="mb-3">
-      <Form.Range className="range" value={value} onChange={onChange} />
+      <Form.Label>{label}</Form.Label>
+      <InputGroup className="mb-3 range-wrapper">
+        <Form.Range className="range" value={value} onChange={onChange} />
 
-          <Form.Control className="range-text" type="text" value={value} onChange={onChange}/>
+        <InputGroup className="mb-3 range-text-wrapper">
+          <Form.Control
+            className="range-text"
+            type="text"
+            value={value}
+            onChange={onChange}
+          />
+          <InputGroup.Text id="basic-addon1">px</InputGroup.Text>
+        </InputGroup>
       </InputGroup>
       {/* <Form.Text className="text-muted">{invalid}</Form.Text> */}
     </>
 
+    // <Form.Label>{label}</Form.Label>
+    // <Form.Range value={value} onChange={onChange} />
 
-      // <Form.Label>{label}</Form.Label>
-      // <Form.Range value={value} onChange={onChange} />
-      
     // </>
   );
 };
