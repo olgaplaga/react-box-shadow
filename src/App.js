@@ -1,22 +1,14 @@
 import useClipboard from 'react-hook-clipboard';
 
-import logo from './logo.svg';
 import './styles/App.css';
 import './styles/stage.css';
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Form,
-  InputGroup,
-  FormControl,
-} from 'react-bootstrap';
+import './styles/text.css';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import React, { useState } from 'react';
-import hexToRgb from './lib/hexToRGB';
 import Range from './components/Range';
 import Color from './components/Color';
 import CopyToClipboard from './components/Copy';
+
 
 function App() {
   const [horizontal, setHorizontal] = useState(50);
@@ -29,16 +21,20 @@ function App() {
 
   const [opacity, setOpacity] = useState(50);
 
-  const [shadowColor, setShadowColor] = useState('#ff0000');
-  const [shadowRgb, setShadowRgb] = useState({ r: 0, g: 0, b: 0 });
+  const [shadowColor, setShadowColor] = useState('#434242');
+  const [shadowRgb, setShadowRgb] = useState({ r: 67, g: 66, b: 66 });
   const [shadowColorInvalid, setShadowColorInvalid] = useState('');
 
-  const [backgroundColor, setBackgroundColor] = useState('#00ff00');
-  const [backgroundRgb, setBackgroundRgb] = useState({ r: 0, g: 255, b: 0 });
+  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
+  const [backgroundRgb, setBackgroundRgb] = useState({
+    r: 255,
+    g: 255,
+    b: 255,
+  });
   const [backgroundColorInvalid, setBackgroundColorInvalid] = useState('');
 
-  const [boxColor, setBoxColor] = useState('#0000ff');
-  const [boxRgb, setBoxRgb] = useState({ r: 0, g: 0, b: 255 });
+  const [boxColor, setBoxColor] = useState('#ffe8a8');
+  const [boxRgb, setBoxRgb] = useState({ r: 255, g: 232, b: 168 });
   const [boxColorInvalid, setBoxColorInvalid] = useState('');
 
   const [inset, setInset] = useState(false);
@@ -57,11 +53,18 @@ function App() {
     backgroundColor: `rgb(${backgroundRgb.r}, ${backgroundRgb.g}, ${backgroundRgb.b})`,
   };
 
-  const CopyToClipboard = (value) => {
-    const [clipboard, copyToClipboard] = useClipboard();
-    const toClipboard = innerStyle.boxShadow;
-    const onClickCopyButton = () => copyToClipboard(toClipboard);
-    return onClickCopyButton;
+  const [buttonText, setButtonText] = useState('Copy');
+
+  //https://www.npmjs.com/package/react-hook-clipboard
+  const CopyToClipboard = () => {
+    let [clipboard, copyToClipboard] = useClipboard();
+    clipboard = innerStyle.boxShadow;
+
+    const onClick = () => {
+      const copied = copyToClipboard(clipboard);
+      setButtonText('Copied!');
+    };
+    return onClick;
   };
 
   return (
@@ -123,15 +126,12 @@ function App() {
         <Col>
           <div className="outer" style={outerStyle}>
             <div className="inner" style={innerStyle}>
-              <div className="App">
-
-                <p>Clipboard content: </p>
-
-                <button onClick={CopyToClipboard(innerStyle.boxShadow)}>
-                  Copy to clipboard
-                </button>
+              <div className="copy-button">
+                <code>box-shadow: {innerStyle.boxShadow}</code> <br/><br/>
+                <Button onClick={CopyToClipboard()} variant="success">
+                  {buttonText}
+                </Button>{' '}
               </div>
-              box-shadow: {innerStyle.boxShadow}
             </div>
           </div>
         </Col>
