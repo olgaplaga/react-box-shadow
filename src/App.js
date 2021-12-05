@@ -1,3 +1,5 @@
+import useClipboard from 'react-hook-clipboard';
+
 import logo from './logo.svg';
 import './styles/App.css';
 import './styles/stage.css';
@@ -14,8 +16,10 @@ import React, { useState } from 'react';
 import hexToRgb from './lib/hexToRGB';
 import Range from './components/Range';
 import Color from './components/Color';
+import CopyToClipboard from './components/Copy';
 
 function App() {
+
   const [horizontal, setHorizontal] = useState(50);
 
   const [vertical, setVertical] = useState(50);
@@ -39,21 +43,28 @@ function App() {
   const [boxColorInvalid, setBoxColorInvalid] = useState('');
 
   const [inset, setInset] = useState(false);
-  const onChangeInset = () => setInset(!inset)
+  const onChangeInset = () => setInset(!inset);
 
   const innerStyle = {
     backgroundColor: `rgb(${boxRgb.r}, ${boxRgb.g}, ${boxRgb.b})`,
-    boxShadow: `${inset ? 'inset ' : ''}${horizontal}px ${vertical}px ${blur}px ${spread}px rgba(${shadowRgb.r}, ${shadowRgb.g}, ${shadowRgb.b}, 0.${opacity})`,
+    boxShadow: `${
+      inset ? 'inset ' : ''
+    }${horizontal}px ${vertical}px ${blur}px ${spread}px rgba(${shadowRgb.r}, ${
+      shadowRgb.g
+    }, ${shadowRgb.b}, 0.${opacity})`,
   };
 
   const outerStyle = {
     backgroundColor: `rgb(${backgroundRgb.r}, ${backgroundRgb.g}, ${backgroundRgb.b})`,
+
   };
+
+
 
   return (
     <Container fluid>
       <h1>Box Shadow CSS Generator</h1>
-      <br/>
+      <br />
       <Row>
         <Col>
           <Range
@@ -61,11 +72,15 @@ function App() {
             value={horizontal}
             setValue={setHorizontal}
           />
-          <Range name="vertical" value={vertical} setValue={setVertical} /><br/>
-          <Range name="blur" value={blur} setValue={setBlur} /><br/>
-          <Range name="spread" value={spread} setValue={setSpread} /><br/>
-          <Range name="opacity" value={opacity} setValue={setOpacity} /><br/>
-          <br/>
+          <Range name="vertical" value={vertical} setValue={setVertical} />
+          <br />
+          <Range name="blur" value={blur} setValue={setBlur} />
+          <br />
+          <Range name="spread" value={spread} setValue={setSpread} />
+          <br />
+          <Range name="opacity" value={opacity} setValue={setOpacity} />
+          <br />
+          <br />
           <Color
             name="shadow"
             value={shadowColor}
@@ -74,7 +89,7 @@ function App() {
             setText={setShadowColor}
             setInvalid={setShadowColorInvalid}
           />
-          <br/>
+          <br />
           <Color
             name="box"
             value={boxColor}
@@ -83,7 +98,7 @@ function App() {
             setText={setBoxColor}
             setInvalid={setBoxColorInvalid}
           />
-          <br/>
+          <br />
           <Color
             name="background"
             value={backgroundColor}
@@ -92,7 +107,7 @@ function App() {
             setText={setBackgroundColor}
             setInvalid={setBackgroundColorInvalid}
           />
-          <br/>
+          <br />
 
           <Form.Check
             type="switch"
@@ -100,15 +115,18 @@ function App() {
             value={inset}
             onChange={onChangeInset}
           />
-          <br/>
-
+          <br />
         </Col>
         <Col>
           <div className="outer" style={outerStyle}>
             <div className="inner" style={innerStyle}>
-            -webkit-box-shadow: {innerStyle.boxShadow}<br/>
-            -moz-box-shadow: {innerStyle.boxShadow}<br/>
-             box-shadow: {innerStyle.boxShadow}
+            <CopyToClipboard/>
+              box-shadow: {innerStyle.boxShadow}
+
+
+
+
+            
             </div>
           </div>
         </Col>
