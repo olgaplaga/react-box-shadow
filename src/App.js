@@ -19,7 +19,6 @@ import Color from './components/Color';
 import CopyToClipboard from './components/Copy';
 
 function App() {
-
   const [horizontal, setHorizontal] = useState(50);
 
   const [vertical, setVertical] = useState(50);
@@ -56,10 +55,14 @@ function App() {
 
   const outerStyle = {
     backgroundColor: `rgb(${backgroundRgb.r}, ${backgroundRgb.g}, ${backgroundRgb.b})`,
-
   };
 
-
+  const CopyToClipboard = (value) => {
+    const [clipboard, copyToClipboard] = useClipboard();
+    const toClipboard = innerStyle.boxShadow;
+    const onClickCopyButton = () => copyToClipboard(toClipboard);
+    return onClickCopyButton;
+  };
 
   return (
     <Container fluid>
@@ -120,13 +123,15 @@ function App() {
         <Col>
           <div className="outer" style={outerStyle}>
             <div className="inner" style={innerStyle}>
-            <CopyToClipboard/>
+              <div className="App">
+
+                <p>Clipboard content: </p>
+
+                <button onClick={CopyToClipboard(innerStyle.boxShadow)}>
+                  Copy to clipboard
+                </button>
+              </div>
               box-shadow: {innerStyle.boxShadow}
-
-
-
-
-            
             </div>
           </div>
         </Col>
