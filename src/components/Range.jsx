@@ -23,13 +23,7 @@ const Range = ({ name, value, setValue }) => {
           <InputGroup.Text id="basic-addon1">px</InputGroup.Text>
         </InputGroup>
       </InputGroup>
-      {/* <Form.Text className="text-muted">{invalid}</Form.Text> */}
-    </>
-
-    // <Form.Label>{label}</Form.Label>
-    // <Form.Range value={value} onChange={onChange} />
-
-    // </>
+     </>
   );
 };
 
